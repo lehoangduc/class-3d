@@ -8,7 +8,7 @@
     "dev": "remix vite:dev --port 3000",
     "lint-check": "biome check .",
     "lint": "biome check --write .",
-    "start": "remix-serve ./build/server/index.js",
+    "start": "HOST=0.0.0.0 PORT=9003 remix-serve ./build/server/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {
