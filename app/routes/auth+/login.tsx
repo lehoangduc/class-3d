@@ -50,6 +50,8 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     })
   } catch (err: unknown) {
+    console.log(err)
+
     let message = t('error.UnexpectedError')
 
     if (err instanceof HTTPError) {
