@@ -19,6 +19,7 @@ export default {
     'Edit object': 'Chinh sửa {{object}}',
     Project: 'Dự án',
     Projects: 'Dự án',
+    'View in space': 'Xem trong không gian',
 
     'or Click': 'hoặc nhấp chuột',
     'to Upload': 'để upload',

@@ -63,7 +63,7 @@ const FlatSurfaceRenderer = ({ project, onLoad }: FlatSurfaceRendererProps) => {
         tone-mapping="neutral"
       >
         <button type="button" slot="ar-button">
-          {t('common.ViewInSpace')}
+          {t('common.View in space')}
         </button>
 
         <div className="progress-bar hide" slot="progress-bar">
