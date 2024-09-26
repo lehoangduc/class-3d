@@ -1,7 +1,6 @@
 import { createRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import useEnvsStore from '@/components/stores/envs'
 import type { Project } from '@/components/types'
 import ProjectsService from '@/modules/projects/service.client'
 
@@ -27,7 +26,6 @@ declare global {
 }
 
 const FlatSurfaceRenderer = ({ project, onLoad }: FlatSurfaceRendererProps) => {
-  const { envs } = useEnvsStore()
   const { t } = useTranslation()
   const contentDisplay = ProjectsService.getContentDisplay(project)
   const viewerRef = createRef<any>()
@@ -54,7 +52,7 @@ const FlatSurfaceRenderer = ({ project, onLoad }: FlatSurfaceRendererProps) => {
       <model-viewer
         id="model-viewer"
         ref={viewerRef}
-        src={`/${envs?.storage?.filePath}/${contentDisplay?.content?.media?.main?.storage_meta?.key}`}
+        src={`/files/${contentDisplay?.content?.media?.main?.storage_meta?.key}`}
         environment-image="neutral"
         loading="eager"
         camera-controls
