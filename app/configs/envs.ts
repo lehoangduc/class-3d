@@ -24,7 +24,7 @@ export const ENVS = {
 
   storage: {
     filePath: process.env.STORAGE_FILE_PATH || 'public/files',
-    fileMaxSize: Number.parseInt(process.env.STORAGE_FILE_MAX_SIZE || '1048576', 10), // 200MB
+    fileMaxSize: Number.parseInt(process.env.STORAGE_FILE_MAX_SIZE || '209715200', 10), // 200MB
   },
 }
 
