@@ -7,7 +7,9 @@ import { ClientOnly } from 'remix-utils/client-only'
 
 import FlatSurfaceRenderer from '@/components/projects/renderers/flat-surface'
 import Logo from '@/components/shared/logo'
+import useEnvsStore from '@/components/stores/envs'
 import { Button } from '@/components/ui/button'
+import { getSharedEnvs } from '@/configs/utils'
 import ProjectsService from '@/modules/projects/service.server'
 import { responseError } from '@/utils/domain-error'
 
@@ -17,16 +19,18 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 
 export async function loader({ request, params }: ActionFunctionArgs) {
   try {
+    const envs = getSharedEnvs()
     const { slug } = params
     const project = await ProjectsService.findOne(slug as string)
 
-    return json({ project })
+    return json({ envs, project })
   } catch (err: unknown) {
     return await responseError(request, err)
   }
 }
 
 export default function Viewer() {
+  const setEnvs = useEnvsStore((state: any) => state.setEnvs)
   const data = useLoaderData<typeof loader>()
   const { t } = useTranslation()
   const [isOpened, setIsOpened] = useState(false)
@@ -58,6 +62,8 @@ export default function Viewer() {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
+    setEnvs(data.envs)
+
     setIsSupportedBrowser(
       ['chrome', 'firefox', 'safari', 'ios', 'crios'].includes(detect()?.name || ''),
     )

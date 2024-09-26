@@ -23,7 +23,7 @@ export default function useProject({
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const { t } = useTranslation()
-  const envs = useEnvsStore((state: any) => state.envs)
+  const { envs } = useEnvsStore()
 
   const uploadsRef = useRef<Record<string, any>[]>([])
   const queryKey = ['projects']

@@ -17,7 +17,7 @@ export default function useProjects() {
     filter: {},
     pagination: {},
   })
-  const envs = useEnvsStore((state: any) => state.envs)
+  const { envs } = useEnvsStore()
 
   const refresh = () => queryClient.invalidateQueries({ queryKey })
 
