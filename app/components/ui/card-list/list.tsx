@@ -1,5 +1,5 @@
 import { type VariantProps, cva } from 'class-variance-authority'
-import { type ReactNode, createContext } from 'react'
+import { createContext } from 'react'
 
 import { cn } from '@/utils/misc'
 
@@ -23,7 +23,7 @@ const listVariants = cva(
 )
 
 interface CardListProps extends VariantProps<typeof listVariants> {
-  children: ReactNode
+  children: React.ReactNode
   loading?: boolean
   className?: string
 }

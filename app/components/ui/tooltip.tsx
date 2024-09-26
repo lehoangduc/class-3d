@@ -1,11 +1,11 @@
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import { type ReactNode, useState } from 'react'
+import { useState } from 'react'
 
 interface TooltipProps extends Omit<TooltipPrimitive.TooltipContentProps, 'content'> {
   content:
-    | ReactNode
+    | React.ReactNode
     | string
-    | ((props: { setOpen: (open: boolean) => void }) => ReactNode)
+    | ((props: { setOpen: (open: boolean) => void }) => React.ReactNode)
 }
 
 const Tooltip = ({ children, content, side = 'top' }: TooltipProps) => {

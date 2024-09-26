@@ -1,5 +1,3 @@
-import type { ReactNode } from 'react'
-
 import { cn } from '@/utils/misc'
 
 export default function MaxWidthWrapper({
@@ -9,7 +7,7 @@ export default function MaxWidthWrapper({
 }: {
   className?: string
   large?: boolean
-  children: ReactNode
+  children: React.ReactNode
 }) {
   return (
     <div className={cn('container', large ? 'max-w-screen-2xl' : 'max-w-6xl', className)}>

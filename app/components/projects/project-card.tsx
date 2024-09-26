@@ -2,8 +2,8 @@ import { formatDateTime, timeAgo } from '@/utils/datetime'
 import { cn } from '@/utils/misc'
 import { Link } from '@remix-run/react'
 import useMediaQuery from '../hooks/use-media-query'
+import { useAppContext } from '../providers/app'
 import { Icons } from '../shared/icons'
-import useEnvsStore from '../stores/envs'
 import type { Project } from '../types'
 import { CardList } from '../ui/card-list'
 import { Tooltip } from '../ui/tooltip'
@@ -23,7 +23,7 @@ export default function ProjectCard({
   onQrCode,
   onDelete,
 }: ProjectCardProps) {
-  const { envs } = useEnvsStore()
+  const { envs } = useAppContext()
   const { isMobile } = useMediaQuery()
 
   return (
@@ -57,7 +57,7 @@ export default function ProjectCard({
                   target="_blank"
                   to={getProjectViewUrl(
                     project.slug as string,
-                    `${envs?.baseUrl}${envs?.projectDisplayPath}`,
+                    `${envs?.projectDisplayPath}`,
                   )}
                   className="truncate text-gray-500 transition-colors hover:text-gray-700 hover:underline hover:underline-offset-2"
                 >

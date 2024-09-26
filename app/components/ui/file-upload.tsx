@@ -1,6 +1,6 @@
 import { type VariantProps, cva } from 'class-variance-authority'
 import { UploadCloud } from 'lucide-react'
-import { type DragEvent, type ReactNode, useState } from 'react'
+import { type DragEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
@@ -89,7 +89,7 @@ type FileUploadProps = FileUploadReadFileProps & {
   /**
    * Content to display below the upload icon (null to only display the icon)
    */
-  content?: ReactNode | null
+  content?: React.ReactNode | null
 
   /**
    * Desired resolution to suggest and optionally resize to

@@ -1,5 +1,5 @@
 import { type VariantProps, cva } from 'class-variance-authority'
-import { type ReactNode, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 import { cn } from '@/utils/misc'
 import { Icons } from '../shared/icons'
@@ -52,12 +52,12 @@ export const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  text?: ReactNode | string
+  text?: React.ReactNode | string
   textWrapperClassName?: string
   loading?: boolean
-  icon?: ReactNode
+  icon?: React.ReactNode
   shortcut?: string
-  disabledTooltip?: string | ReactNode
+  disabledTooltip?: string | React.ReactNode
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

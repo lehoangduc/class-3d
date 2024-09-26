@@ -63,8 +63,10 @@ export async function action({ request }: ActionFunctionArgs) {
           throw new DomainError('Bad request', 400)
         }
 
-        const filePath = `./${getSharedEnv('storage.filePath')}/${key}`
-        await unlink(resolvePath(filePath))
+        try {
+          const filePath = `./${getSharedEnv('storage.filePath')}/${key}`
+          await unlink(resolvePath(filePath))
+        } catch (err) {}
 
         return json({})
       }

@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import useProject from '@/components/hooks/use-project'
-import useEnvsStore from '@/components/stores/envs'
+import { useAppContext } from '@/components/providers/app'
 import ProjectsService from '@/modules/projects/service.client'
 import { cn } from '@/utils/misc'
 import ProjectSchema from '../../schemas/project'
@@ -22,7 +22,6 @@ import { getProjectViewUrl } from '../utils'
 interface ProjectDetailModalProps {
   open: boolean
   project?: Project
-  fileMaxSize?: number
   onClose?: () => void
   onSaveSuccess?: (project: Project, isNew?: boolean) => void
 }
@@ -30,14 +29,17 @@ interface ProjectDetailModalProps {
 export default function ProjectDetailModal({
   open,
   project,
-  fileMaxSize,
   onClose,
   onSaveSuccess,
 }: ProjectDetailModalProps) {
   const { t } = useTranslation()
-  const { envs } = useEnvsStore()
-  const projectSchema = ProjectSchema(t)
+  const { envs, user } = useAppContext()
   const formRef = useRef(null)
+
+  const projectSchema = ProjectSchema(t)
+  const fileMaxSize =
+    user?.project_features?.file_upload_size_limit?.value || envs?.storage.fileMaxSize
+  const rendererBaseUrl = user?.project_features?.renderer?.base_url || ''
 
   const [form, { name }] = useForm({
     id: project ? `project-${project?._id}` : undefined,
@@ -156,7 +158,7 @@ export default function ProjectDetailModal({
                   size={256}
                   value={getProjectViewUrl(
                     project.slug as string,
-                    `${envs?.baseUrl}${envs?.projectDisplayPath}`,
+                    `${rendererBaseUrl}${envs?.projectDisplayPath}`,
                   )}
                 />
               ) : (

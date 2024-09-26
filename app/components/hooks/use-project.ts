@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from 'uuid'
 import FilesService from '@/modules/files/service.client'
 import ProjectsService from '@/modules/projects/service.client'
 import { handleApiError } from '@/utils/misc'
-import useEnvsStore from '../stores/envs'
+import { useAppContext } from '../providers/app'
 import type { Project } from '../types'
 
 export default function useProject({
@@ -23,7 +23,7 @@ export default function useProject({
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const { t } = useTranslation()
-  const { envs } = useEnvsStore()
+  const { envs } = useAppContext()
 
   const uploadsRef = useRef<Record<string, any>[]>([])
   const queryKey = ['projects']

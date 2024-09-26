@@ -5,7 +5,6 @@ export const ENVS = {
   siteName: process.env.SITE_NAME,
   secretKey: process.env.SECRET_KEY,
 
-  baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   apiUrl: process.env.API_URL,
   apiProjectViewerUrl: process.env.API_PROJECT_VIEWER_URL,
 

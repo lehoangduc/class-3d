@@ -19,6 +19,7 @@ export type User = {
   name?: string
   role?: string
   image?: string
+  project_features?: any
 }
 
 export type Project = {

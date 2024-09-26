@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import ProjectsService from '@/modules/projects/service.client'
 import { handleApiError } from '@/utils/misc'
 import type { PaginationOptions } from '@/utils/types'
-import useEnvsStore from '../stores/envs'
+import { useAppContext } from '../providers/app'
 
 export default function useProjects() {
   const navigate = useNavigate()
@@ -17,7 +17,7 @@ export default function useProjects() {
     filter: {},
     pagination: {},
   })
-  const { envs } = useEnvsStore()
+  const { envs } = useAppContext()
 
   const refresh = () => queryClient.invalidateQueries({ queryKey })
 

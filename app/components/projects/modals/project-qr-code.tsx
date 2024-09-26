@@ -1,6 +1,6 @@
 import { QRCodeCanvas } from 'qrcode.react'
 
-import useEnvsStore from '@/components/stores/envs'
+import { useAppContext } from '@/components/providers/app'
 import type { Project } from '../../types'
 import { Modal } from '../../ui/modal'
 import { getProjectViewUrl } from '../utils'
@@ -16,7 +16,8 @@ export default function ProjectQrCodeModal({
   project,
   onClose,
 }: ProjectQrCodeModalProps) {
-  const { envs } = useEnvsStore()
+  const { envs, user } = useAppContext()
+  const rendererBaseUrl = user?.project_features?.renderer?.base_url || ''
 
   return (
     project && (
@@ -28,9 +29,10 @@ export default function ProjectQrCodeModal({
         <div className="flex flex-col space-y-6 bg-gray-50 py-6 text-left">
           <div className="mx-auto overflow-hidden rounded-lg border-2 border-gray-200 bg-white p-4">
             <QRCodeCanvas
+              size={256}
               value={getProjectViewUrl(
                 project.slug as string,
-                `${envs?.baseUrl}${envs?.projectDisplayPath}`,
+                `${rendererBaseUrl}${envs?.projectDisplayPath}`,
               )}
             />
           </div>

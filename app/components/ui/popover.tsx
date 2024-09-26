@@ -1,13 +1,12 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import type { ReactNode } from 'react'
 import { Drawer } from 'vaul'
 
 import { cn } from '@/utils/misc'
 import useMediaQuery from '../hooks/use-media-query'
 
 interface PopoverProps {
-  children: ReactNode
-  content: ReactNode | string
+  children: React.ReactNode
+  content: React.ReactNode | string
   align?: 'center' | 'start' | 'end'
   openPopover?: boolean
   setOpenPopover?: (open: boolean) => void
