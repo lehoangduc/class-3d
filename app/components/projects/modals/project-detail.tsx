@@ -22,6 +22,7 @@ import { getProjectViewUrl } from '../utils'
 interface ProjectDetailModalProps {
   open: boolean
   project?: Project
+  fileMaxSize?: number
   onClose?: () => void
   onSaveSuccess?: (project: Project, isNew?: boolean) => void
 }
@@ -29,6 +30,7 @@ interface ProjectDetailModalProps {
 export default function ProjectDetailModal({
   open,
   project,
+  fileMaxSize,
   onClose,
   onSaveSuccess,
 }: ProjectDetailModalProps) {
@@ -64,10 +66,10 @@ export default function ProjectDetailModal({
         <h3 className="!mt-0 text-lg font-medium">
           {project?._id
             ? // biome-ignore lint/style/useTemplate:
-              t('common.EditObject', {
+              t('common.Edit object', {
                 object: t('common.Project'),
               }) + ` "${project.name}"`
-            : t('common.CreateObject', { object: t('common.project') })}
+            : t('common.Create object', { object: t('common.project') })}
         </h3>
       </div>
 
@@ -86,7 +88,7 @@ export default function ProjectDetailModal({
                     htmlFor={name.id}
                     className="block text-sm font-bold text-gray-700"
                   >
-                    {t('field.ProjectName')}
+                    {t('field.Project name')}
                   </Label>
                 </div>
               </div>
@@ -106,7 +108,7 @@ export default function ProjectDetailModal({
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Label className="block text-sm font-bold text-gray-700">
-                    {t('field.ContentDisplay')}
+                    {t('field.Content display')}
                   </Label>
                 </div>
               </div>
@@ -114,6 +116,7 @@ export default function ProjectDetailModal({
               <div className="mt-2 w-full">
                 <FileUpload
                   accept="threed"
+                  maxFileSize={fileMaxSize}
                   currentFileName={asset?.content?.media?.main?.storage_meta?.file_name}
                   onChange={onFileChange}
                 />

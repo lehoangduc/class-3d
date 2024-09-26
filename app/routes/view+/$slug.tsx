@@ -80,7 +80,7 @@ export default function Viewer() {
                   <div className="flex flex-col items-center gap-2">
                     <p className="text-2xl font-medium text-primary">Whoops!</p>
                     <p className="text-center text-lg font-normal text-primary/60">
-                      {t('error.NoSupportedBrowser')}
+                      {t('error.No supported browser')}
                     </p>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ export default function Viewer() {
                     </div>
 
                     <div className="launcher-note text-lg	text-white">
-                      {t('message.LauncherMarkerlessGuide')}
+                      {t('message.Launcher markerless guide')}
                     </div>
                   </div>
                 </div>

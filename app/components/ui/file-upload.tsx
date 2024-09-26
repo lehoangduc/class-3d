@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 import { cn } from '@/utils/misc'
+import { convertBytes } from '@/utils/nformatter'
 import { Icons } from '../shared/icons'
 
 const acceptFileTypes: Record<string, { types: string[]; extensions?: string[] }> = {
@@ -96,9 +97,9 @@ type FileUploadProps = FileUploadReadFileProps & {
   targetResolution?: { width: number; height: number }
 
   /**
-   * A maximum file size (in megabytes) to check upon file selection
+   * A maximum file size to check upon file selection
    */
-  maxFileSizeMB?: number
+  maxFileSize?: number
 
   /**
    * Accessibility label for screen readers
@@ -120,7 +121,7 @@ const FileUpload = ({
   clickToUpload = true,
   showHoverOverlay = true,
   content,
-  maxFileSizeMB = 0,
+  maxFileSize = 0,
   accessibilityLabel = 'File upload',
   disabled = false,
   onChange,
@@ -135,9 +136,9 @@ const FileUpload = ({
 
     setFileName(file.name)
 
-    if (maxFileSizeMB > 0 && file.size / 1024 / 1024 > maxFileSizeMB) {
+    if (maxFileSize > 0 && file.size > maxFileSize) {
       toast.error(
-        `${t('error.FileSizeTooBig')}  (${t('common.max')} ${maxFileSizeMB} MB)`,
+        `${t('error.File size too big')}  (${t('common.max')} ${convertBytes(maxFileSize)})`,
       )
       return
     }
@@ -147,10 +148,10 @@ const FileUpload = ({
     if (acceptedTypes.length && file.type && !acceptedTypes.includes(file.type)) {
       toast.error(
         acceptFileTypes[accept].extensions
-          ? t('error.FileOnlySupported', {
+          ? t('error.File only supported', {
               extensions: acceptFileTypes[accept].extensions.join(','),
             })
-          : t('error.FileIsInvalid'),
+          : t('error.File is invalid'),
       )
       return
     }
@@ -237,8 +238,8 @@ const FileUpload = ({
             {content ?? (
               <>
                 <p>
-                  {t('common.DragAndDrop')} {clickToUpload && t('common.orClick')}{' '}
-                  {t('common.toUpload')}.
+                  {t('common.Drag and drop')} {clickToUpload && t('common.or Click')}{' '}
+                  {t('common.to Upload')}.
                 </p>
               </>
             )}

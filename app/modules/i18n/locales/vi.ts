@@ -12,16 +12,16 @@ export default {
     Create: 'Tạo',
     Edit: 'Sửa',
     Delete: 'Xoá',
-    DragAndDrop: 'Kéo thả',
-    ConfirmDelete: 'Xác nhận xoá?',
+    'Drag and drop': 'Kéo thả',
+    'Confirm delete': 'Xác nhận xoá?',
 
-    CreateObject: 'Tạo mới {{object}}',
-    EditObject: 'Chinh sửa {{object}}',
+    'Create object': 'Tạo mới {{object}}',
+    'Edit object': 'Chinh sửa {{object}}',
     Project: 'Dự án',
     Projects: 'Dự án',
 
-    orClick: 'hoặc nhấp chuột',
-    toUpload: 'để upload',
+    'or Click': 'hoặc nhấp chuột',
+    'to Upload': 'để upload',
     max: 'tối đa',
     of: 'của',
     project: 'dự án',
@@ -29,29 +29,29 @@ export default {
   },
 
   field: {
-    ProjectName: 'Tên dự án',
-    ContentDisplay: 'Nội dung hiển thị',
+    'Project name': 'Tên dự án',
+    'Content display': 'Nội dung hiển thị',
   },
 
   message: {
-    EmptyProjects: 'Chưa có dự án nào',
-    SavedSuccessfully: 'Lưu thành công',
-    DeletedSuccessfully: 'Xoá thành công',
-    LauncherMarkerlessGuide:
+    'Empty projects': 'Chưa có dự án nào',
+    'Saved successfully': 'Lưu thành công',
+    'Deleted successfully': 'Xoá thành công',
+    'Launcher markerless guide':
       'Chọn nơi có đầy đủ ánh sáng, bề mặt có họa tiết và ít phản xạ ánh sáng',
   },
 
   error: {
     Required: 'Bắt buộc',
-    UnexpectedError: 'Đã có lỗi xảy ra',
-    PleaseLogin: 'Xin đăng nhập lại',
-    FieldIsRequired: 'Xin nhập {{field}}',
-    FieldIsInvalid: '{{field}} không hợp lệ',
-    FileIsInvalid: 'Tập tin không hợp lệ',
-    FileSizeTooBig: 'Tập tin quá lớn',
-    FileOnlySupported: 'Chỉ cho phép tập tin chứa đuôi {{extensions}}',
-    InvalidEmailPasword: 'Email hoặc mật khẩu không chính xác',
-    NoSupportedBrowser:
+    'Unexpected error': 'Đã có lỗi xảy ra',
+    'Please login': 'Xin đăng nhập lại',
+    'Field is required': 'Xin nhập {{field}}',
+    'Field is invalid': '{{field}} không hợp lệ',
+    'File is invalid': 'Tập tin không hợp lệ',
+    'File size too big': 'Tập tin quá lớn',
+    'File only supported': 'Chỉ cho phép tập tin chứa đuôi {{extensions}}',
+    'Invalid email pasword': 'Email hoặc mật khẩu không chính xác',
+    'No supported browser':
       'Vui lòng sử dụng trình duyệt Chrome, Safari hoặc Firefox để trải nghiệm',
   },
 }

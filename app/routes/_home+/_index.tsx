@@ -1,4 +1,5 @@
 import { type LoaderFunctionArgs, type MetaFunction, json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ClientOnly } from 'remix-utils/client-only'
@@ -16,6 +17,8 @@ import PaginationControls from '@/components/shared/pagination-controls'
 import type { Project } from '@/components/types'
 import { Button } from '@/components/ui/button'
 import { CardList } from '@/components/ui/card-list'
+import { getSharedEnv } from '@/configs/utils'
+import { AuthService } from '@/modules/auth'
 import i18next from '@/modules/i18n/i18n.server'
 import { cn } from '@/utils/misc'
 
@@ -25,17 +28,21 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18next.getFixedT(request)
+  const user = (await AuthService.me(request)) as any
+  const fileMaxSize =
+    user?.project_features?.file_upload_size_limit?.value ||
+    getSharedEnv('storage.fileMaxSize')
 
-  return json({ pageTitle: t('common.Projects') })
+  return json({ pageTitle: t('common.Projects'), fileMaxSize })
 }
 
 export default function Index() {
+  const { fileMaxSize } = useLoaderData<typeof loader>()
   const { t } = useTranslation()
   const { isLoading, data, load } = useProjects()
   const [isOpenDetailModal, setIsOpenDetailModal] = useState(false)
   const [isOpenQrCodeModal, setIsOpenQrCodeModal] = useState(false)
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
-
   const [project, setProject] = useState<Project | undefined>()
 
   const handleCloseDetailModal = () => {
@@ -88,6 +95,7 @@ export default function Index() {
         {() => (
           <ProjectDetailModal
             open={isOpenDetailModal}
+            fileMaxSize={fileMaxSize}
             project={project}
             onClose={handleCloseDetailModal}
             onSaveSuccess={handleSaveSuccess}
@@ -116,7 +124,7 @@ export default function Index() {
         <div className="flex">
           <div className="grow-0">
             <Button
-              text={t('common.CreateObject', { object: t('project') })}
+              text={t('common.Create object', { object: t('project') })}
               onClick={() => handleEdit({})}
             />
           </div>

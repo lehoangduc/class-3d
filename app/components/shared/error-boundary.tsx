@@ -69,7 +69,7 @@ const getErrorMessage = (err: unknown) => {
   }
 
   console.error('Unable to get error message for error:', err)
-  return t('error.UnexpectedError')
+  return t('error.Unexpected error')
 }
 
 export { GenericErrorBoundary, getErrorMessage }

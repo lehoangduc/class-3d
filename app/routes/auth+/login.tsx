@@ -52,12 +52,12 @@ export async function action({ request }: ActionFunctionArgs) {
   } catch (err: unknown) {
     console.log(err)
 
-    let message = t('error.UnexpectedError')
+    let message = t('error.Unexpected error')
 
     if (err instanceof HTTPError) {
       const status = err.response.status
       if (status === 401) {
-        message = t('error.InvalidEmailPasword')
+        message = t('error.Invalid email pasword')
       }
     }
 

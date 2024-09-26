@@ -4,12 +4,12 @@ import { z } from 'zod'
 const LoginSchema = (t: TFunction) => {
   return z.object({
     email: z
-      .string({ message: t('error.FieldIsRequired', { field: 'Email' }) })
+      .string({ message: t('error.Field is required', { field: 'Email' }) })
       .max(255)
-      .email({ message: t('error.FieldIsInvalid', { field: 'Email' }) }),
+      .email({ message: t('error.Field is invalid', { field: 'Email' }) }),
     password: z
-      .string({ message: t('error.FieldIsRequired', { field: t('common.Password') }) })
-      .max(60, { message: t('error.FieldIsInvalid', { field: t('common.Password') }) }),
+      .string({ message: t('error.Field is required', { field: t('common.Password') }) })
+      .max(60, { message: t('error.Field is invalid', { field: t('common.Password') }) }),
   })
 }
 

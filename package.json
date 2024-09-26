@@ -8,7 +8,9 @@
     "dev": "remix vite:dev --port 3000",
     "lint-check": "biome check .",
     "lint": "biome check --write .",
-    "start": "HOST=0.0.0.0 PORT=9003 remix-serve ./build/server/index.js",
+    "start": "env-cmd -f .env remix-serve ./build/server/index.js",
+    "pm2:start": "pm2 start npm --name class-3d -- run start",
+    "pm2:restart": "pm2 restart class-3d --update-env",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -30,6 +32,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "detect-browser": "^5.3.0",
+    "env-cmd": "^10.1.0",
     "framer-motion": "^11.5.4",
     "i18next": "^23.15.1",
     "i18next-browser-languagedetector": "^8.0.0",

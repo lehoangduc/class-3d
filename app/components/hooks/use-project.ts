@@ -149,7 +149,7 @@ export default function useProject({
     mutationFn: handleSave,
     onSuccess: async (data: any) => {
       await refresh()
-      toast.success(t('message.SavedSuccessfully'))
+      toast.success(t('message.Saved successfully'))
       onSaveSuccess?.(data, !!project)
     },
     onError: (err) => handleApiError(err, t, navigate, envs),
@@ -159,7 +159,7 @@ export default function useProject({
     mutationFn: handleRemove,
     onSuccess: async () => {
       await refresh()
-      toast.success(t('message.DeletedSuccessfully'))
+      toast.success(t('message.Deleted successfully'))
       onDeleteSuccess?.()
     },
     onError: (err) => handleApiError(err, t, navigate, envs),

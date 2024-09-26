@@ -36,7 +36,7 @@ export default function ProjectDeleteModal({
         <div className="flex flex-col space-y-3 bg-gray-50 px-4 py-8 text-left sm:px-16">
           <Button
             variant="danger"
-            text={t('common.ConfirmDelete')}
+            text={t('common.Confirm delete')}
             loading={isDeleting}
             onClick={() => remove(project)}
           />
