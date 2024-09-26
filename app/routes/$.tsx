@@ -1,4 +1,5 @@
 import type { MetaFunction } from '@remix-run/node'
+import { useTranslation } from 'react-i18next'
 
 import { GenericErrorBoundary } from '@/components/shared/error-boundary'
 
@@ -17,6 +18,8 @@ export default function NotFound() {
 }
 
 export function ErrorBoundary() {
+  const { t } = useTranslation()
+
   return (
     <GenericErrorBoundary
       statusHandlers={{
@@ -25,7 +28,7 @@ export function ErrorBoundary() {
             <div className="flex flex-col items-center gap-2">
               <p className="text-2xl font-medium text-primary">Whoops!</p>
               <p className="text-center text-lg font-normal text-primary/60">
-                Nothing here yet!
+                {t('error.Page not found')}
               </p>
             </div>
           </div>

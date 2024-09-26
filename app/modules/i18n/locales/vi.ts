@@ -44,6 +44,7 @@ export default {
 
   error: {
     Required: 'Bắt buộc',
+    'Page not found': 'Trang này không tồn tại',
     'Unexpected error': 'Đã có lỗi xảy ra',
     'Please login': 'Xin đăng nhập lại',
     'Field is required': 'Xin nhập {{field}}',
