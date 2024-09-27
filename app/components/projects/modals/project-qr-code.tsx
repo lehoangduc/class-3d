@@ -16,8 +16,7 @@ export default function ProjectQrCodeModal({
   project,
   onClose,
 }: ProjectQrCodeModalProps) {
-  const { envs, user } = useAppContext()
-  const rendererBaseUrl = user?.project_features?.renderer?.base_url || ''
+  const { envs } = useAppContext()
 
   return (
     project && (
@@ -32,7 +31,7 @@ export default function ProjectQrCodeModal({
               size={256}
               value={getProjectViewUrl(
                 project.slug as string,
-                `${rendererBaseUrl}${envs?.projectDisplayPath}`,
+                `${envs.baseUrl}${envs?.projectDisplayPath}`,
               )}
             />
           </div>

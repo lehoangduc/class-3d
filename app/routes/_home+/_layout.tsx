@@ -22,6 +22,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const envs = getSharedEnvs()
     const user = (await AuthService.me(request)) as User
 
+    const url = new URL(request.url)
+    envs.baseUrl = url.origin
+
     return json({ envs, user } as const)
   } catch (err: unknown) {
     return await responseError(request, err)

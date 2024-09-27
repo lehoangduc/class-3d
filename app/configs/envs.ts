@@ -5,6 +5,7 @@ export const ENVS = {
   siteName: process.env.SITE_NAME,
   secretKey: process.env.SECRET_KEY,
 
+  baseUrl: '',
   apiUrl: process.env.API_URL,
   apiProjectViewerUrl: process.env.API_PROJECT_VIEWER_URL,
 
@@ -19,7 +20,7 @@ export const ENVS = {
     logoutPath: process.env.AUTH_LOGOUT_PATH || '/auth/logout',
   },
 
-  projectDisplayPath: process.env.PROJECT_DISPLAY_PATH,
+  projectDisplayPath: process.env.PROJECT_DISPLAY_PATH || '/view',
 
   storage: {
     filePath: process.env.STORAGE_FILE_PATH || 'public/files',

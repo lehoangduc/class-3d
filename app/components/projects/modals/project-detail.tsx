@@ -39,7 +39,6 @@ export default function ProjectDetailModal({
   const projectSchema = ProjectSchema(t)
   const fileMaxSize =
     user?.project_features?.file_upload_size_limit?.value || envs?.storage.fileMaxSize
-  const rendererBaseUrl = user?.project_features?.renderer?.base_url || ''
 
   const [form, { name }] = useForm({
     id: project ? `project-${project?._id}` : undefined,
@@ -158,7 +157,7 @@ export default function ProjectDetailModal({
                   size={256}
                   value={getProjectViewUrl(
                     project.slug as string,
-                    `${rendererBaseUrl}${envs?.projectDisplayPath}`,
+                    `${envs.baseUrl}${envs?.projectDisplayPath}`,
                   )}
                 />
               ) : (
