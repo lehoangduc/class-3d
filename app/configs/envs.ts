@@ -14,7 +14,6 @@ export const ENVS = {
   },
 
   auth: {
-    cookieDomain: process.env.AUTH_COOKIE_DOMAIN || 'localhost',
     cookieName: process.env.AUTH_COOKIE_NAME || 'access_token',
     loginPath: process.env.AUTH_LOGIN_PATH || '/auth/login',
     logoutPath: process.env.AUTH_LOGOUT_PATH || '/auth/logout',
