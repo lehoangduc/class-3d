@@ -1,6 +1,6 @@
 import { createCookieSessionStorage } from '@remix-run/node'
 
-import { getEnv, isProduction } from '@/configs/utils'
+import { getEnv } from '@/configs/utils'
 
 const authSessionStore = createCookieSessionStorage({
   cookie: {
@@ -9,7 +9,6 @@ const authSessionStore = createCookieSessionStorage({
     sameSite: 'strict',
     path: '/',
     httpOnly: true,
-    secure: isProduction(),
     maxAge: 604800, // 7 days
   },
 })

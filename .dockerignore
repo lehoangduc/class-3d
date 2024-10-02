@@ -30,5 +30,6 @@
 **/values.dev.yaml
 **/build
 **/dist
+public/files
 LICENSE
 README.md
