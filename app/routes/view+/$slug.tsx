@@ -8,6 +8,7 @@ import { ClientOnly } from 'remix-utils/client-only'
 import FlatSurfaceRenderer from '@/components/projects/renderers/flat-surface'
 import Logo from '@/components/shared/logo'
 import { Button } from '@/components/ui/button'
+import { getSharedEnvs } from '@/configs/utils'
 import ProjectsService from '@/modules/projects/service.server'
 import { responseError } from '@/utils/domain-error'
 
@@ -16,21 +17,31 @@ export const meta: MetaFunction = ({ data }: { data: any }) => {
 }
 
 export async function loader({ request, params }: ActionFunctionArgs) {
+  const url = new URL(request.url)
+  const envs = getSharedEnvs()
+
+  envs.url = {
+    origin: url.origin,
+    port: url.port,
+  }
+
   try {
     const { slug } = params
     const project = await ProjectsService.findOne(slug as string)
 
-    return json({ project })
+    return json({ envs, project })
   } catch (err: unknown) {
     return await responseError(request, err)
   }
 }
 
 export default function Viewer() {
-  const data = useLoaderData<typeof loader>()
+  const { envs, project } = useLoaderData<typeof loader>()
   const { t } = useTranslation()
   const [isOpened, setIsOpened] = useState(false)
   const [isSupportedBrowser, setIsSupportedBrowser] = useState<boolean>(false)
+  const assetBaseUrl =
+    envs.assetBaseUrl || envs.url.origin.replace(envs.url.port, envs.assetHostPort)
 
   const onOpen = () => {
     setIsOpened(true)
@@ -118,7 +129,11 @@ export default function Viewer() {
                 </div>
 
                 {isOpened && (
-                  <FlatSurfaceRenderer project={data.project} onLoad={onLoad} />
+                  <FlatSurfaceRenderer
+                    assetBaseUrl={assetBaseUrl}
+                    project={project}
+                    onLoad={onLoad}
+                  />
                 )}
               </>
             )}

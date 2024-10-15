@@ -5,7 +5,10 @@ export const ENVS = {
   siteName: process.env.SITE_NAME,
   secretKey: process.env.SECRET_KEY,
 
+  url: {},
   baseUrl: '',
+  assetBaseUrl: process.env.ASSET_BASE_URL,
+  assetHostPort: process.env.ASSET_HOST_PORT,
   apiUrl: process.env.API_URL,
   apiProjectViewerUrl: process.env.API_PROJECT_VIEWER_URL,
 

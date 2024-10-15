@@ -5,6 +5,7 @@ import type { Project } from '@/components/types'
 import ProjectsService from '@/modules/projects/service.client'
 
 interface FlatSurfaceRendererProps {
+  assetBaseUrl?: string
   project: Project
   onLoad?: () => void
 }
@@ -25,7 +26,11 @@ declare global {
   }
 }
 
-const FlatSurfaceRenderer = ({ project, onLoad }: FlatSurfaceRendererProps) => {
+const FlatSurfaceRenderer = ({
+  assetBaseUrl,
+  project,
+  onLoad,
+}: FlatSurfaceRendererProps) => {
   const { t } = useTranslation()
   const contentDisplay = ProjectsService.getContentDisplay(project)
   const viewerRef = createRef<any>()
@@ -52,7 +57,7 @@ const FlatSurfaceRenderer = ({ project, onLoad }: FlatSurfaceRendererProps) => {
       <model-viewer
         id="model-viewer"
         ref={viewerRef}
-        src={`/files/${contentDisplay?.content?.media?.main?.storage_meta?.key}`}
+        src={`${assetBaseUrl}/files/${contentDisplay?.content?.media?.main?.storage_meta?.key}`}
         environment-image="neutral"
         loading="eager"
         camera-controls
