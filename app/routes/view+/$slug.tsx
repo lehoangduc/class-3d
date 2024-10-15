@@ -41,7 +41,9 @@ export default function Viewer() {
   const [isOpened, setIsOpened] = useState(false)
   const [isSupportedBrowser, setIsSupportedBrowser] = useState<boolean>(false)
   const assetBaseUrl =
-    envs.assetBaseUrl || envs.url.origin.replace(envs.url.port, envs.assetHostPort)
+    envs.assetBaseUrl || envs.assetHostPort
+      ? envs.url.origin.replace(envs.url.port, envs.assetHostPort)
+      : ''
 
   const onOpen = () => {
     setIsOpened(true)

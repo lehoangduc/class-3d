@@ -2,14 +2,14 @@ version: '3.3'
 
 services:
   nginx:
-    image: nginx:latest
+    image: lehoangduc/class-3d-nginx:latest
     container_name: 3d-nginx
     ports:
       - 8080:80
     links:
       - web
     volumes:
-      - app-volume:/usr/share/nginx/html/files
+      - 3d-volume:/usr/share/nginx/html/files
 
   web:
     image: lehoangduc/class-3d:latest
@@ -17,7 +17,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - app-volume:/usr/src/app/public/files
+      - 3d-volume:/usr/src/app/public/files
 
 volumes:
-  app-volume: 
+  3d-volume: 
