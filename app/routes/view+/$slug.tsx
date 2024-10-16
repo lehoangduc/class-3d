@@ -38,8 +38,10 @@ export async function loader({ request, params }: ActionFunctionArgs) {
 export default function Viewer() {
   const { envs, project } = useLoaderData<typeof loader>()
   const { t } = useTranslation()
-  const [isOpened, setIsOpened] = useState(false)
   const [isSupportedBrowser, setIsSupportedBrowser] = useState<boolean>(false)
+  const [isOpened, setIsOpened] = useState(false)
+  const [loadingProgress, setLoadingProgress] = useState(0)
+
   const assetBaseUrl =
     envs.assetBaseUrl || envs.assetHostPort
       ? envs.url.origin.replace(envs.url.port, envs.assetHostPort)
@@ -52,6 +54,11 @@ export default function Viewer() {
   const onLoad = () => {
     setTimeout(removeLauncher, 600)
     hideLauncher()
+  }
+
+  const onProgress = (event: any) => {
+    const { totalProgress } = event.detail
+    setLoadingProgress(Math.round(totalProgress * 100))
   }
 
   const showLauncher = () => {
@@ -122,6 +129,10 @@ export default function Viewer() {
                           onClick={onOpen}
                         />
                       </div>
+
+                      <div className="launcher-loading-percent text-white font-bold">
+                        {loadingProgress}%
+                      </div>
                     </div>
 
                     <div className="launcher-note text-lg	text-white">
@@ -135,6 +146,7 @@ export default function Viewer() {
                     assetBaseUrl={assetBaseUrl}
                     project={project}
                     onLoad={onLoad}
+                    onProgress={onProgress}
                   />
                 )}
               </>

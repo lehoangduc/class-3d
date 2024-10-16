@@ -8,6 +8,7 @@ interface FlatSurfaceRendererProps {
   assetBaseUrl?: string
   project: Project
   onLoad?: () => void
+  onProgress?: (event: any) => void
 }
 
 declare global {
@@ -30,6 +31,7 @@ const FlatSurfaceRenderer = ({
   assetBaseUrl,
   project,
   onLoad,
+  onProgress,
 }: FlatSurfaceRendererProps) => {
   const { t } = useTranslation()
   const contentDisplay = ProjectsService.getContentDisplay(project)
@@ -37,11 +39,13 @@ const FlatSurfaceRenderer = ({
 
   // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
-    viewerRef.current.addEventListener('load', () => {
-      try {
-        onLoad?.()
-      } catch (err) {}
-    })
+    viewerRef.current.addEventListener('load', onLoad)
+    viewerRef.current.addEventListener('progress', onProgress)
+
+    return () => {
+      viewerRef.current.removeEventListener('load', onLoad)
+      viewerRef.current.removeEventListener('progress', onProgress)
+    }
   }, [])
 
   return (

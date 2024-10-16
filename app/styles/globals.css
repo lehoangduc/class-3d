@@ -252,6 +252,10 @@
         height: 0;
       }
 
+      .launcher-loading-percent {
+        display: block;
+      }
+
       .launcher-note {
         display: block!important;
       }
@@ -320,5 +324,11 @@
       height: 70px;
       transition: height .5s;
       overflow: hidden;
+    }
+
+    .launcher-loading-percent {
+      color: #fff;
+      font-weight: 700;
+      display: none;
     }
   }
