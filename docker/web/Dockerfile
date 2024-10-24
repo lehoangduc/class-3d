@@ -11,7 +11,7 @@ FROM base AS deps
 
 WORKDIR /usr/src/app
 
-COPY ../../package*.json ./
+COPY package*.json ./
 
 RUN npm install --include=dev
 
@@ -21,7 +21,7 @@ FROM base AS production-deps
 WORKDIR /usr/src/app
 
 COPY --from=deps /usr/src/app/node_modules /usr/src/app/node_modules
-COPY ../../package*.json ./
+COPY package*.json ./
 
 RUN npm prune --omit=dev
 
@@ -31,7 +31,7 @@ FROM base AS build
 WORKDIR /usr/src/app
 
 COPY --from=deps /usr/src/app/node_modules /usr/src/app/node_modules
-ADD ../../ .
+ADD . .
 RUN npm run build
 
 ################################################################################
