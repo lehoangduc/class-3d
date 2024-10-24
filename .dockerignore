@@ -30,7 +30,6 @@
 **/values.dev.yaml
 **/build
 **/dist
-**/docker
 public/files
 LICENSE
 README.md
