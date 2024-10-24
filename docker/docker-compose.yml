@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   nginx:
     image: lehoangduc/class-3d-nginx:latest
@@ -20,4 +18,4 @@ services:
       - 3d-volume:/usr/src/app/public/files
 
 volumes:
-  3d-volume: 
+  3d-volume:
